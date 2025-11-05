@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boxplot Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #chart {
+            width: 100%;
+            height: 600px;
+        }
+        .description {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diagrama de Caja (Boxplot)</h1>
+        <div id="chart"></div>
+        <div class="description">
+            <h3>Descripción</h3>
+            <p>Un diagrama de caja (boxplot) es una representación gráfica que muestra la distribución de un conjunto de datos a través de sus cuartiles. Este gráfico muestra:</p>
+            <ul>
+                <li><strong>Mediana:</strong> Línea central de la caja</li>
+                <li><strong>Cuartiles:</strong> Los bordes de la caja (Q1 y Q3)</li>
+                <li><strong>Bigotes:</strong> Extensión hasta los valores máximos y mínimos dentro de 1.5 IQR</li>
+                <li><strong>Valores atípicos:</strong> Puntos individuales fuera de los bigotes</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo para diferentes grupos
+        var grupo1 = {
+            y: [12, 18, 22, 25, 28, 30, 32, 35, 38, 40, 42, 45, 48, 50, 52, 55, 58, 60, 65, 70],
+            type: 'box',
+            name: 'Grupo A',
+            marker: { color: '#4CAF50' },
+            boxmean: 'sd'
+        };
+
+        var grupo2 = {
+            y: [15, 20, 24, 28, 32, 35, 38, 42, 45, 48, 50, 53, 56, 58, 62, 65, 68, 72, 75, 80],
+            type: 'box',
+            name: 'Grupo B',
+            marker: { color: '#2196F3' },
+            boxmean: 'sd'
+        };
+
+        var grupo3 = {
+            y: [10, 14, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48, 51, 54, 57, 60, 63, 66, 68],
+            type: 'box',
+            name: 'Grupo C',
+            marker: { color: '#FF9800' },
+            boxmean: 'sd'
+        };
+
+        var grupo4 = {
+            y: [20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115],
+            type: 'box',
+            name: 'Grupo D',
+            marker: { color: '#E91E63' },
+            boxmean: 'sd'
+        };
+
+        var data = [grupo1, grupo2, grupo3, grupo4];
+
+        var layout = {
+            title: {
+                text: 'Comparación de Distribuciones por Grupo',
+                font: {
+                    size: 20
+                }
+            },
+            yaxis: {
+                title: 'Valores',
+                zeroline: false
+            },
+            xaxis: {
+                title: 'Grupos'
+            },
+            showlegend: true,
+            legend: {
+                x: 1,
+                xanchor: 'right',
+                y: 1
+            },
+            paper_bgcolor: 'white',
+            plot_bgcolor: '#f9f9f9'
+        };
+
+        Plotly.newPlot('chart', data, layout, {responsive: true});
+    </script>
+</body>
+</html>

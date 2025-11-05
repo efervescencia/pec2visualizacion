@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treemap Visualization</title>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #chart {
+            width: 100%;
+            height: 600px;
+        }
+        .description {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #2196F3;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mapa de Árbol (Treemap)</h1>
+        <div id="chart"></div>
+        <div class="description">
+            <h3>Descripción</h3>
+            <p>Un mapa de árbol (treemap) es una visualización jerárquica que muestra datos como un conjunto de rectángulos anidados. Cada rama del árbol se representa mediante un rectángulo, que luego se subdivide en rectángulos más pequeños que representan las sub-ramas.</p>
+            <ul>
+                <li><strong>Tamaño:</strong> El área de cada rectángulo es proporcional al valor que representa</li>
+                <li><strong>Jerarquía:</strong> Los colores y anidamientos muestran la estructura jerárquica</li>
+                <li><strong>Comparación:</strong> Permite comparar fácilmente proporciones y tamaños</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Datos jerárquicos de ejemplo
+        var data = [{
+            type: "treemap",
+            labels: [
+                "Empresa",
+                "Ventas", "Marketing", "Desarrollo", "Operaciones",
+                "Ventas Directas", "Ventas Online", "Ventas Internacionales",
+                "Marketing Digital", "Marketing Tradicional",
+                "Frontend", "Backend", "DevOps",
+                "Logística", "Atención al Cliente", "Administración"
+            ],
+            parents: [
+                "",
+                "Empresa", "Empresa", "Empresa", "Empresa",
+                "Ventas", "Ventas", "Ventas",
+                "Marketing", "Marketing",
+                "Desarrollo", "Desarrollo", "Desarrollo",
+                "Operaciones", "Operaciones", "Operaciones"
+            ],
+            values: [
+                0,
+                45, 25, 35, 30,
+                20, 15, 10,
+                15, 10,
+                15, 12, 8,
+                12, 10, 8
+            ],
+            text: [
+                "Total",
+                "45M €", "25M €", "35M €", "30M €",
+                "20M €", "15M €", "10M €",
+                "15M €", "10M €",
+                "15M €", "12M €", "8M €",
+                "12M €", "10M €", "8M €"
+            ],
+            textposition: "middle center",
+            marker: {
+                colorscale: 'Viridis',
+                line: {
+                    width: 2,
+                    color: 'white'
+                }
+            },
+            pathbar: {
+                visible: true
+            }
+        }];
+
+        var layout = {
+            title: {
+                text: 'Distribución de Recursos por Departamento',
+                font: {
+                    size: 20
+                }
+            },
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 60
+            },
+            paper_bgcolor: 'white',
+            font: {
+                size: 14
+            }
+        };
+
+        Plotly.newPlot('chart', data, layout, {responsive: true});
+    </script>
+</body>
+</html>
