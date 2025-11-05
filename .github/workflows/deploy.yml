@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - copilot/setup-github-pages-deployment
   workflow_dispatch:
 
 permissions:
