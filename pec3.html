@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualización de Datos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+        }
+        header h1 {
+            margin: 10px 0;
+            font-size: 24px;
+        }
+        header h2 {
+            margin: 5px 0;
+            font-size: 18px;
+            font-weight: normal;
+        }
+        .content {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .tab {
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #003366;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .tab:hover {
+            background-color: #0055a5;
+        }
+        .tab.active {
+            background-color: #0055a5;
+        }
+        .visualisation {
+            display: none;
+        }
+        .visualisation.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Asignatura Visualización de Datos</h1>
+        <h2>Master en Ciencia de Datos UOC</h2>
+    </header>
+    <div class="content">
+        <h3>Julio Montero Alonso</h3>
+        <div class="tabs">
+            <div class="tab active" onclick="showTab(0)">Diferencias entre resort y city hotel</div>
+            <div class="tab" onclick="showTab(1)">Cancelaciones por tipo de hotel</div>
+            <div class="tab" onclick="showTab(2)">Cancelaciones evolutivo</div>
+        </div>
+        
+        <div id="visualisations">
+            <div class="visualisation active">
+                <div class="flourish-embed flourish-chart" data-src="visualisation/26944789"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26944789/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+            </div>
+            <div class="visualisation">
+                <div class="flourish-embed flourish-chart" data-src="visualisation/26943790"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26943790/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+            </div>
+            <div class="visualisation">
+                <div class="flourish-embed flourish-chart" data-src="visualisation/26944132"><script src="https://public.flourish.studio/resources/embed.js"></script><noscript><img src="https://public.flourish.studio/visualisation/26944132/thumbnail" width="100%" alt="chart visualization" /></noscript></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tab');
+            const visualisations = document.querySelectorAll('.visualisation');
+
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+                visualisations[i].classList.toggle('active', i === index);
+            });
+        }
+    </script>
+</body>
+</html>
